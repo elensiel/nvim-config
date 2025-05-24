@@ -26,7 +26,7 @@ return {
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
-                -- "lua_ls",
+                "lua_ls",
                 "jdtls",
             },
             handlers = {
@@ -41,9 +41,9 @@ return {
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup {
                         capabilities = capabilities,
-                        -- root_dir = function (fname)
-                        --     return vim.fn.getcwd()
-                        -- end,
+                        root_dir = function (fname)
+                            return vim.fn.getcwd()
+                        end,
                         settings = {
                             Lua = {
                                 diagnostics = {
@@ -66,10 +66,10 @@ return {
             },
             mapping = cmp.mapping.preset.insert({
                 -- nav 
-                ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-                ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+                ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
+                ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
 
-                ['<C-y>'] = cmp.mapping.confirm({ select = true }), -- select
+                ['<C-i>'] = cmp.mapping.confirm({ select = true }), -- select
                 ["<C-Space>"] = cmp.mapping.complete(), -- show cmp
             }),
             sources = cmp.config.sources({
