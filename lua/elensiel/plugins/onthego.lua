@@ -1,6 +1,12 @@
 return {
-    { 
-        'jiangmiao/auto-pairs',
+    -- { 
+    --     'jiangmiao/auto-pairs',
+    --     -- enabled = false,
+    -- },
+    {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        opts = {},
     },
     {
         'tpope/vim-commentary',
@@ -28,10 +34,20 @@ return {
     {
         'dense-analysis/ale'
     },
-    {
-        'lewis6991/gitsigns.nvim'
-    },
+    -- {
+    --     'lewis6991/gitsigns.nvim'
+    -- },
     {
         'tpope/vim-fugitive'
     },
+    -- {
+    --     "famiu/feline.nvim",
+    --     -- lazy = false,
+    --     dependencies = { 
+    --         'nvim-tree/nvim-web-devicons', 
+    --     },
+    --     config = function()
+    --         require("feline").setup()
+    --     end
+    -- },
 }

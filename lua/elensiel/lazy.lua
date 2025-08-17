@@ -14,4 +14,5 @@ require("lazy").setup({
     spec = "elensiel.plugins",
     change_detection = { notify = false },
     checker = { enabled = true }, -- check updates
+    -- rocks = { enabled = true, hererocks = false, }
 })

@@ -26,8 +26,11 @@ return {
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
-                "lua_ls",
+                -- "lua_ls",
                 "jdtls",
+                -- "gdtoolkit",
+                "powershell_es",
+                -- "gdscript",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -68,8 +71,7 @@ return {
                 -- nav 
                 ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
-
-                ['<C-i>'] = cmp.mapping.confirm({ select = true }), -- select
+                ['<CR>'] = cmp.mapping.confirm({ select = true }), -- select
                 ["<C-Space>"] = cmp.mapping.complete(), -- show cmp
             }),
             sources = cmp.config.sources({
