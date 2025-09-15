@@ -21,12 +21,12 @@ Plug 'junegunn/vim-easy-align'
 Plug 'jiangmiao/auto-pairs'
 
 " Git
-" Plug 'lewis6991/gitsigns.nvim'
-Plug 'tpope/vim-fugitive'
+"Plug 'lewis6991/gitsigns.nvim'
+"Plug 'tpope/vim-fugitive'
 
 " LSP
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'sheerun/vim-polygot'
+"Plug 'sheerun/vim-polygot'
 Plug 'dense-analysis/ale'
 
 " Nav
@@ -37,7 +37,7 @@ Plug 'fxn/vim-monochrome'
 
 " UI
 Plug 'itchyny/lightline.vim'
-" Plug 'nvim-tree/nvim-web-devicons'
+"Plug 'nvim-tree/nvim-web-devicons'
 
 call plug#end()
 ]]
