@@ -22,7 +22,7 @@ Plug 'jiangmiao/auto-pairs'
 
 " Git
 "Plug 'lewis6991/gitsigns.nvim'
-"Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " LSP
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
