@@ -14,6 +14,8 @@ return {
             "saadparwaiz1/cmp_luasnip", -- snippet completion source
             "jose-elias-alvarez/null-ls.nvim",   -- linters and formatters
         },
+        
+        build = ":MasonUpdate",
 
         config = function()
             local lspconfig = require("lspconfig")
@@ -86,8 +88,10 @@ return {
                 require("mason-lspconfig").setup({
                     automatic_installation = true,
                     ensure_installed = {
-                        "lua_ls",
-                        "powershell_es",
+                        "lua_ls", -- lua
+                        "powershell_es", -- ps
+                        "clangd", -- cpp
+                        "jdtls", -- java
                     },
 
                     -- setup installed servers
@@ -109,9 +113,11 @@ return {
                 local tools = {
                     formatting = {
                         "stylua", -- lua
+                        "clang-format", -- cpp
                     },
                     diagnostics = {
                         "luacheck", -- lua
+                        "cpplint", -- cpp
                     }
                 }
 
