@@ -5,16 +5,16 @@ return {
         dependencies = {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
-            "jay-babu/mason-null-ls.nvim", -- null-ls integration
-            "hrsh7th/nvim-cmp",         -- completion engine
-            "hrsh7th/cmp-nvim-lsp",     -- LSP source for nvim-cmp
-            "hrsh7th/cmp-buffer",       -- buffer words source
-            "hrsh7th/cmp-path",         -- filesystem paths source
-            "L3MON4D3/LuaSnip",         -- snippet engine
-            "saadparwaiz1/cmp_luasnip", -- snippet completion source
-            "jose-elias-alvarez/null-ls.nvim",   -- linters and formatters
+            "jay-babu/mason-null-ls.nvim",              -- null-ls integration
+            "hrsh7th/nvim-cmp",                         -- completion engine
+            "hrsh7th/cmp-nvim-lsp",                     -- LSP source for nvim-cmp
+            "hrsh7th/cmp-buffer",                       -- buffer words source
+            "hrsh7th/cmp-path",                         -- filesystem paths source
+            "L3MON4D3/LuaSnip",                         -- snippet engine
+            "saadparwaiz1/cmp_luasnip",                 -- snippet completion source
+            "jose-elias-alvarez/null-ls.nvim",          -- linters and formatters
         },
-        
+
         build = ":MasonUpdate",
 
         config = function()
@@ -91,7 +91,7 @@ return {
                     ensure_installed = {
                         "lua_ls", -- lua
                         "powershell_es", -- ps
-                        "clangd", -- cpp
+                        -- "clangd", -- cpp
                         "jdtls", -- java
                     },
 
@@ -114,11 +114,11 @@ return {
                 local tools = {
                     formatting = {
                         "stylua", -- lua
-                        "clang-format", -- cpp
+                        -- "clang-format", -- cpp
                     },
                     diagnostics = {
                         "luacheck", -- lua
-                        "cpplint", -- cpp
+                        -- "cpplint", -- cpp
                     }
                 }
 

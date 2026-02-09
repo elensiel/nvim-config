@@ -1,3 +1,1 @@
-require("settings")
-require("keymaps")
-require("elensiel.lazy")
+require("core")

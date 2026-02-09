@@ -1,0 +1,4 @@
+require("core.appearance")
+require("core.behavior")
+require("core.keymaps")
+require("core.lazy")

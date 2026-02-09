@@ -3,7 +3,7 @@ return {
     lazy = false;
     build = ":TSUpdate",
     config = function()
-        require("nvim-treesitter.configs").setup({
+        require("nvim-treesitter.config").setup({
             -- A list of parser names, or "all"
             ensure_installed = {
                 "vimdoc", "lua", "bash", "java", "powershell", "c_sharp"
