@@ -18,7 +18,8 @@ return {
         build = ":MasonUpdate",
 
         config = function()
-            local lspconfig = require("lspconfig")
+            -- local lspconfig = require("lspconfig")
+            local lspconfig = vim.lsp.config
 
             local function setup_diagnostics()
                 vim.diagnostic.config({
@@ -51,9 +52,9 @@ return {
                         { name = "nvim_lsp" },
                         { name = "luasnip" },
                     }, {
-                            { name = "buffer" },
-                            { name = "path" },
-                        }),
+                        { name = "buffer" },
+                        { name = "path" },
+                    }),
                 })
 
                 -- Command-line completion
@@ -93,6 +94,8 @@ return {
                         "powershell_es", -- ps
                         -- "clangd", -- cpp
                         "jdtls", -- java
+                        "tsserver", -- typescript
+                        "svelte", -- svelte, duh
                     },
 
                     -- setup installed servers
@@ -101,6 +104,28 @@ return {
                             lspconfig[server_name].setup {
                                 capabilities = capabilities
                             }
+                        end,
+
+                        -- svelte
+                        ["svelte"] = function ()
+                            lspconfig.svelte.setup({
+                                capabilities = capabilities,
+                                settings = {
+                                    svelte = {
+                                        plugin = {
+                                            compilerOptions = { dev = true }
+                                        }
+                                    }
+                                },
+                                on_attach = function(client)
+                                    vim.api.nvim_create_autocmd("BufWritePost", {
+                                        pattern = { "*.js", "*.ts"},
+                                        callback = function()
+                                            client.notify("$/onDidChangeTsOrJsFile", { uri = vim.uri_from_bufnr(0)})
+                                        end,
+                                    })
+                                end,
+                            })
                         end,
                     },
                 })
@@ -115,6 +140,7 @@ return {
                     formatting = {
                         "stylua", -- lua
                         -- "clang-format", -- cpp
+                        "prettierd", -- prettier
                     },
                     diagnostics = {
                         "luacheck", -- lua

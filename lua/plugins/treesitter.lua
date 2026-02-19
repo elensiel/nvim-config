@@ -6,6 +6,7 @@ return {
         require("nvim-treesitter.config").setup({
             -- A list of parser names, or "all"
             ensure_installed = {
+                "svelte", "javascript", "html", "css", "typescript",
                 "vimdoc", "lua", "bash", "java", "powershell", "c_sharp"
                 -- "cpp",
             },
