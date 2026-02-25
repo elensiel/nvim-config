@@ -13,7 +13,7 @@ o.relativenumber = true
 
 -- display invisible chars
 o.list = true
-opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- remove netrw banner
 g.netrw_banner = 0
