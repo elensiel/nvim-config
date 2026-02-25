@@ -1,8 +1,10 @@
 return {
-    {
-        'tpope/vim-fugitive'
-    },
-    {
-        'lewis6991/gitsigns.nvim'
-    },
+	{
+		-- git cmd inside nvim
+		"tpope/vim-fugitive",
+	},
+	{
+		-- see git remote changes
+		"lewis6991/gitsigns.nvim",
+	},
 }
