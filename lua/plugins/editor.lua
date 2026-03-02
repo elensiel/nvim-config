@@ -45,20 +45,22 @@ return {
     --     },
     -- }
 
-    -- TODO what is this?
+    -- commenting shortcut
     {
         'tpope/vim-commentary',
         event = "VeryLazy",
+        -- gcc -> comment line
+        -- gc -> comment selected
+        -- gcap -> comment paragraph
     },
 
-
-    -- TODO what is this?
+    -- set default settings to a more practical value
     {
         'tpope/vim-sensible',
         lazy = false,
     },
 
-    -- TODO what is this?
+    -- surrounding shortcut
     {
         'tpope/vim-surround',
         event = "InsertEnter"
