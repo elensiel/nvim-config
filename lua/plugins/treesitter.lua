@@ -1,40 +1,29 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	dependencies = {
-		"windwp/nvim-ts-autotag", --auto pair alt
+		"windwp/nvim-ts-autotag", --auto tag
 	},
 	lazy = false,
 	build = ":TSUpdate",
 	config = function()
-		require("nvim-treesitter.config").setup({
-			highlight = { enable = true },
-			indent = { enable = true },
+		local language = {
+			"lua",
+			"powershell",
+			"svelte",
+			"html",
+			"css",
+			"typescript",
+		}
 
-			sync_install = true,
-			auto_install = true,
-			ensure_installed = {
-				"svelte",
-				"javascript",
-				"html",
-				"css",
-				"typescript",
-				"vimdoc",
-				"lua",
-				"bash",
-				"powershell",
-				"java",
-				"c_sharp",
-			},
+		-- ensure installation
+		require("nvim-treesitter").install(language)
 
-			-- incremental_selection = {
-			-- 	enable = true,
-			-- 	keymaps = {
-			-- 		init_selection = "gnn", -- start selection
-			-- 		node_incremental = "grn", -- expand to next node
-			-- 		scope_incremental = "<leader>grc", -- expand to scope
-			-- 		node_decremental = "grm", -- shrink
-			-- 	},
-			-- },
+		-- activate on what file
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = language,
+			callback = function()
+				vim.treesitter.start()
+			end,
 		})
 	end,
 }
