@@ -11,7 +11,6 @@ vim.opt.rtp:prepend(lazypath)
 
 -- load plugins
 require("lazy").setup({
-    -- spec = "elensiel.plugins",
     spec = "plugins",
     change_detection = { notify = false },
     checker = { enabled = true }, -- check updates
