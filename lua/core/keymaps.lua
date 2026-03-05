@@ -19,6 +19,3 @@ map({ "n", "v" }, "<leader>p", '"+p', opts)
 
 -- fix whole file indent
 -- map("n", "<leader>=", 'ggVG=', opts)
-
--- remove search highlight
-map("n", "<Esc>", "<cmd>nohlsearch<CR>")
