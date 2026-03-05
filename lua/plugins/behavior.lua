@@ -1,16 +1,21 @@
 return {
-    -- commenting support for diff languages
-    {
-        "folke/ts-comments.nvim",
-        opts = {},
-        event = "VeryLazy",
-        enabled = vim.fn.has("nvim-0.10.0") == 1,
-    },
-
-    -- autopairs. pairs.
+    -- autopairs. pairs. pears?
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
-        opts = {},
+    },
+
+    -- smart commenting
+    {
+        -- file based
+        -- 'folke/ts-comments.nvim',
+
+        -- file + buffer
+        'JoosepAlviste/nvim-ts-context-commentstring',
+
+        -- requires treesitter
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+        },
     },
 }
