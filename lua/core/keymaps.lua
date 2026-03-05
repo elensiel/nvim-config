@@ -16,6 +16,3 @@ map({ "n", "v" }, "<leader>q", ":q<CR>", opts)
 -- clipboard shit
 map("v", "<leader>y", '"+y', opts)
 map({ "n", "v" }, "<leader>p", '"+p', opts)
-
--- fix whole file indent
--- map("n", "<leader>=", 'ggVG=', opts)
