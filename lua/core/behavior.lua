@@ -22,7 +22,7 @@ opt.showmatch = true
 -- persistent undo
 opt.undofile = true
 opt.swapfile = false
-fn.mkdir(opt.undodir:get()[1], "p")           -- ensure undo dir
+fn.mkdir(opt.undodir:get()[1], "p") -- ensure undo dir
 opt.undodir = fn.stdpath("data") .. "/undo//" -- set undo dir
 
 -- limit scrolling
