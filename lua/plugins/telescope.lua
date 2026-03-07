@@ -5,7 +5,7 @@ return {
 		"nvim-lua/plenary.nvim",
 
 		-- sorter (optional)
-		-- { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	},
 
 	keys = {
@@ -43,10 +43,10 @@ return {
 					find_command = {
 						"fd",
 						"--type",
-						"f",
-						"--hidden",
+						"f", -- files only
+						"--hidden", -- show hidden
 						"--follow", -- follow symlinks (optional)
-						"--strip-cwd-prefix",
+						"--strip-cwd-prefix", -- remove './'
 						"--exclude",
 						".git",
 					},

@@ -43,6 +43,7 @@ return {
 				"html",
 				"css",
 				"typescript",
+				-- "markdown",
 			}
 
 			-- ensure installation
