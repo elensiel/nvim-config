@@ -34,7 +34,6 @@ return {
 			"hrsh7th/cmp-path", -- filesystem paths source
 			"L3MON4D3/LuaSnip", -- snippet engine
 			"saadparwaiz1/cmp_luasnip", -- snippet completion source
-			"stevearc/conform.nvim", -- formatter
 		},
 
 		config = function()
@@ -81,6 +80,8 @@ return {
 					{ name = "buffer" },
 				},
 			})
+
+			cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done())
 		end,
 	},
 }
