@@ -1,59 +1,83 @@
+local languages = {
+	-- NVIM CORE
+	lua = {
+		server = "lua_ls",
+		formatter = { "stylua" },
+	},
+
+	-- comment for linux systems
+	-- powershell = {
+	-- 	server = "powershell_es",
+	-- 	formatter = nil,
+	-- },
+
+	-- WEB DEV STUFF
+	html = {
+		server = "html",
+		formatter = { "prettierd", "prettier" },
+	},
+
+	css = {
+		server = "cssls",
+		formatter = { "prettierd", "prettier" },
+	},
+
+	typescript = {
+		server = "ts_ls",
+		formatter = { "prettierd", "prettier" },
+	},
+
+	svelte = {
+		server = "svelte",
+		formatter = { "prettierd", "prettier" },
+	},
+
+	-- MISC
+	json = {
+		server = nil,
+		formatter = { "prettierd", "prettier" },
+	},
+
+	markdown = {
+		server = "marksman",
+		formatter = { "prettierd", "prettier" },
+	},
+}
+
+-- cache servers and formatters
+-- by looping once
+-- 'seen' table for duplication checking
+local servers, seen = {}, {}
+local formatters = {}
+for ft, lang in pairs(languages) do
+	if lang.server and not seen[lang.server] then
+		table.insert(servers, lang.server)
+		seen[lang.server] = true
+	end
+	if lang.formatter then
+		formatters[ft] = lang.formatter
+	end
+end
+
 return {
-	-- lsp + formatter
-	-- NOTE -> why formatter is here?
-	-- easy config for each language
-	-- via 'languages' table
+	-- actual lsp setup here
 	{
 		"neovim/nvim-lspconfig", -- lsp config and launcher
+		event = { "BufReadPre", "BufNewFile" },
 
 		dependencies = {
 			"williamboman/mason.nvim", -- lsp installer
 			"williamboman/mason-lspconfig.nvim", -- lsp and mason connector
-			"stevearc/conform.nvim", -- formatter
 		},
 
 		config = function()
-			local languages = {
-				-- core
-				lua = { server = "lua_ls", formatter = { "prettierd", "prettier" } },
-				powershell = { server = "powershell_es", formatter = nil },
-				java = { server = "jdtls", formatter = { "prettierd", "prettier" } },
-
-				-- web dev
-				html = { server = "html", formatter = { "prettierd", "prettier" } },
-				css = { server = "cssls", formatter = { "prettierd", "prettier" } },
-				-- javascript = { server = "tsserver", formatter = { "prettierd", "prettier" } },
-				typescript = { server = "ts_ls", formatter = { "prettierd", "prettier" } },
-				svelte = { server = "svelte", formatter = { "prettierd", "prettier" } },
-
-				-- misc
-				json = { server = nil, formatter = { "prettierd", "prettier" } },
-				markdown = { server = "marksman", formatter = { "prettierd", "prettier" } },
-			}
-
-			vim.diagnostic.config({
-				virtual_text = true,
-				signs = true,
-				underline = true,
-				update_in_insert = false,
-				severity_sort = true,
-			})
-
 			require("mason").setup()
 
 			local lspconfig = vim.lsp.config
-			local capabilities = vim.tbl_deep_extend(
-				"force",
-				{},
-				vim.lsp.protocol.make_client_capabilities(),
-				require("cmp_nvim_lsp").default_capabilities()
-			)
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			local servers = {}
-			for _, lang in pairs(languages) do
-				if lang.server then
-					table.insert(servers, lang.server)
-				end
+			local function on_attach(client, bufnr)
+				client.server_capabilities.documentFormattingProvider = false
 			end
 
 			require("mason-lspconfig").setup({
@@ -64,9 +88,7 @@ return {
 					function(server_name)
 						lspconfig[server_name].setup({
 							capabilities = capabilities,
-							on_attach = function(client)
-								client.server_capabilities.documentFormattingProvider = false
-							end,
+							on_attach = on_attach,
 						})
 					end,
 
@@ -74,8 +96,8 @@ return {
 					["svelte"] = function()
 						lspconfig.svelte.setup({
 							capabilities = capabilities,
-							on_attach = function(client)
-								client.server_capabilities.documentFormattingProvider = false
+							on_attach = function(client, bufnr)
+								on_attach(client, bufnr)
 
 								vim.api.nvim_create_autocmd("BufWritePost", {
 									pattern = { "*.js", "*.ts" },
@@ -91,29 +113,47 @@ return {
 				},
 			})
 
+			vim.diagnostic.config({
+				virtual_text = true, -- inline error msg
+				-- signs = true, --  gutter signs
+				underline = true,
+				update_in_insert = false,
+				severity_sort = true,
+			})
+		end,
+	},
+
+	-- formatter
+	{
+		"stevearc/conform.nvim",
+		event = "BufWritePre",
+
+		config = function()
 			local conform = require("conform")
-			local formatters = {}
-			for ft, lang in pairs(languages) do
-				if lang.formatter then
-					formatters[ft] = lang.formatter
-				end
-			end
 
 			conform.setup({
 				formatters_by_ft = formatters,
-				format_on_save = {
-					timeout_ms = 1000,
-					lsp_fallback = true,
-				},
 
-				-- manual format keybind
-				vim.keymap.set({ "n", "v" }, "<leader>=", function()
-					conform.format({
-						async = true,
+				-- async formatting on save
+				format_on_save = function(bufnr)
+					return {
+						timeout_ms = 1000,
 						lsp_fallback = true,
-					})
-				end),
+					}
+				end,
+
+				default_format_opts = {
+					stop_after_first = true,
+				},
 			})
+
+			-- manual format keybind
+			vim.keymap.set({ "n", "v" }, "<leader>=", function()
+				conform.format({
+					async = true,
+					lsp_fallback = true,
+				})
+			end)
 		end,
 	},
 }
