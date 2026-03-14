@@ -63,10 +63,32 @@ return {
 	-- actual lsp setup here
 	{
 		"neovim/nvim-lspconfig", -- lsp config and launcher
+
+		-- launch lsp on file launch
 		event = { "BufReadPre", "BufNewFile" },
 
 		dependencies = {
 			"williamboman/mason.nvim", -- lsp installer
+			"williamboman/mason-lspconfig.nvim", -- lsp and mason connector
+		},
+
+		config = function()
+			vim.diagnostic.config({
+				virtual_text = true, -- inline error msg
+				-- signs = true, --  gutter signs
+				underline = true,
+				update_in_insert = false,
+				severity_sort = true,
+			})
+		end,
+	},
+
+	-- lsp server manager
+	{
+		"williamboman/mason.nvim", -- lsp installer
+		build = "MasonUpdate",
+
+		dependencies = {
 			"williamboman/mason-lspconfig.nvim", -- lsp and mason connector
 		},
 
@@ -111,14 +133,6 @@ return {
 						})
 					end,
 				},
-			})
-
-			vim.diagnostic.config({
-				virtual_text = true, -- inline error msg
-				-- signs = true, --  gutter signs
-				underline = true,
-				update_in_insert = false,
-				severity_sort = true,
 			})
 		end,
 	},

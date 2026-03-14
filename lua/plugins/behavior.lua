@@ -12,6 +12,7 @@ return {
 		-- 'folke/ts-comments.nvim',
 
 		-- file + buffer
+		-- requires treesitter tho
 		"JoosepAlviste/nvim-ts-context-commentstring",
 
 		-- requires treesitter

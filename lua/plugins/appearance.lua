@@ -30,11 +30,13 @@ return {
 	-- syntax highlighting
 	{
 		"nvim-treesitter/nvim-treesitter",
+		lazy = false,
+		build = ":TSUpdate",
+
 		dependencies = {
 			"windwp/nvim-ts-autotag", -- html auto tag
 		},
-		lazy = false,
-		build = ":TSUpdate",
+
 		config = function()
 			local language = {
 				"lua",
