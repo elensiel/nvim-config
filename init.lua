@@ -1,3 +1,1 @@
-require("basic")
-require("keymap")
-require("oldman")
+require('core')
