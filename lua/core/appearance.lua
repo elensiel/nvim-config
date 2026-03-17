@@ -3,7 +3,7 @@ local o = vim.o
 local opt = vim.opt
 
 -- nerd font support
-g.have_nord_font = true
+g.have_nerd_font = true
 
 -- 24bit rgb support for terminal
 opt.termguicolors = true
