@@ -11,8 +11,9 @@ opt.termguicolors = true
 -- line numbers
 o.relativenumber = true
 
--- whitespace indicators 
+-- whitespace indicators
 o.list = true
+opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- remove netrw banner
 g.netrw_banner = 0
