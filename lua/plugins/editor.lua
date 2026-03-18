@@ -9,7 +9,7 @@ return {
 	-- add, delete, change
 	{
 		"tpope/vim-surround",
-		event = "InsertEnter",
+		event = "BufReadPost",
 
 		-- actions
 		-- 'yss' -> add

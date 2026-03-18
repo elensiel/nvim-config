@@ -11,6 +11,14 @@ local languages = {
 	-- 	formatter = nil,
 	-- },
 
+	bash = {
+		formatter = { "shfmt" },
+	},
+
+	sh = {
+		formatter = { "shfmt" },
+	},
+
 	-- WEB DEV STUFF
 	html = {
 		server = "html",
@@ -140,7 +148,7 @@ return {
 	-- formatter
 	{
 		"stevearc/conform.nvim",
-		event = "BufWritePre",
+		event = "BufReadPre",
 
 		config = function()
 			local conform = require("conform")
