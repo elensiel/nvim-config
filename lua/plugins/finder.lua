@@ -1,4 +1,5 @@
 return {
+	-- fuzzy finder (telescope alt)
 	{
 		repo = "ctrlpvim/ctrlp.vim",
 		config = function()

@@ -5,7 +5,7 @@ return {
 	},
 
 	-- git changes signs
-	{
-		repo = "lewis6991/gitsigns.nvim",
-	},
+	-- {
+	-- 	repo = "lewis6991/gitsigns.nvim",
+	-- },
 }

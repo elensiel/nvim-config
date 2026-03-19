@@ -8,4 +8,13 @@ return {
 			}
 		end,
 	},
+
+	-- scrollbar
+	{
+		-- lighter
+		repo = "dstein64/nvim-scrollview",
+
+		-- interactive
+		-- repo = "petertriho/nvim-scrollbar",
+	},
 }
