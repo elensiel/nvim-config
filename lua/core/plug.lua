@@ -12,3 +12,6 @@ if (fn.empty(fn.glob(install_path))) > 0 then
 		"https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
 	})
 end
+
+-- vim.g.coc_enable_startup_check = 0
+vim.g.coc_disable_startup_warning = 1
